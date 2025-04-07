@@ -1,0 +1,19 @@
+<suite name="Mobile Automation Android Suite">
+    <listeners>
+        <listener class-name="org.appium.framework.reports.ReportListeners"/>
+    </listeners>
+
+    <test name="Android Tests">
+        <groups>
+            <run>
+                <include name="Android"/>
+            </run>
+        </groups>
+        <parameter name="platformName" value="Android"/>
+        <classes>
+            <class name="org.tests.android.POPUPTests"/>
+            <class name="org.tests.android.ListTests"/>
+            <class name="org.tests.android.SliderTests"/>
+        </classes>
+    </test>
+</suite>

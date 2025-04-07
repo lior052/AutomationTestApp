@@ -1,0 +1,182 @@
+[
+  {
+    "testName": "testHomePopupCancel",
+    "className": "org.tests.android.POPUPTests",
+    "platform": "Android",
+    "status": "SKIPPED",
+    "timestamp": "2025-04-07 10:53:30",
+    "duration": "0ms",
+    "reportFileName": "ExtentReport_20250407_105254.html",
+    "error": "org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: An unknown server-side error occurred while processing the command. Original error: Could not find a connected Android device in 20000ms \nHost info: host: \u0027udizavs-MacBook-Pro.local\u0027, ip: \u0027fe80:0:0:0:10cd:4369:8cf4:5cfe%en0\u0027\nBuild info: version: \u00274.31.0\u0027, revision: \u00271ef9f18787*\u0027\nSystem info: os.name: \u0027Mac OS X\u0027, os.arch: \u0027x86_64\u0027, os.version: \u002715.3.2\u0027, java.version: \u002711.0.26\u0027\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities\u003d[Capabilities {appium:app: apps/app-debug.apk, appium:automationName: UIAutomator2, appium:deviceName: HUAWEI EVA-L09, appium:uiautomator2ServerLaunchTimeout: 20000, platformName: ANDROID}]}]\nCapabilities {appium:app: apps/app-debug.apk, appium:automationName: UIAutomator2, appium:deviceName: HUAWEI EVA-L09, appium:uiautomator2ServerLaunchTimeout: 20000, platformName: ANDROID}"
+  },
+  {
+    "testName": "testHomePopupInteraction",
+    "className": "org.tests.android.POPUPTests",
+    "platform": "Android",
+    "status": "SKIPPED",
+    "timestamp": "2025-04-07 10:53:30",
+    "duration": "0ms",
+    "reportFileName": "ExtentReport_20250407_105254.html",
+    "error": "org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: An unknown server-side error occurred while processing the command. Original error: Could not find a connected Android device in 20000ms \nHost info: host: \u0027udizavs-MacBook-Pro.local\u0027, ip: \u0027fe80:0:0:0:10cd:4369:8cf4:5cfe%en0\u0027\nBuild info: version: \u00274.31.0\u0027, revision: \u00271ef9f18787*\u0027\nSystem info: os.name: \u0027Mac OS X\u0027, os.arch: \u0027x86_64\u0027, os.version: \u002715.3.2\u0027, java.version: \u002711.0.26\u0027\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities\u003d[Capabilities {appium:app: apps/app-debug.apk, appium:automationName: UIAutomator2, appium:deviceName: HUAWEI EVA-L09, appium:uiautomator2ServerLaunchTimeout: 20000, platformName: ANDROID}]}]\nCapabilities {appium:app: apps/app-debug.apk, appium:automationName: UIAutomator2, appium:deviceName: HUAWEI EVA-L09, appium:uiautomator2ServerLaunchTimeout: 20000, platformName: ANDROID}"
+  },
+  {
+    "testName": "testAddItem",
+    "className": "org.tests.android.ListTests",
+    "platform": "Android",
+    "status": "SKIPPED",
+    "timestamp": "2025-04-07 10:53:51",
+    "duration": "0ms",
+    "reportFileName": "ExtentReport_20250407_105254.html",
+    "error": "org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: An unknown server-side error occurred while processing the command. Original error: Could not find a connected Android device in 20000ms \nHost info: host: \u0027udizavs-MacBook-Pro.local\u0027, ip: \u0027fe80:0:0:0:10cd:4369:8cf4:5cfe%en0\u0027\nBuild info: version: \u00274.31.0\u0027, revision: \u00271ef9f18787*\u0027\nSystem info: os.name: \u0027Mac OS X\u0027, os.arch: \u0027x86_64\u0027, os.version: \u002715.3.2\u0027, java.version: \u002711.0.26\u0027\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities\u003d[Capabilities {appium:app: apps/app-debug.apk, appium:automationName: UIAutomator2, appium:deviceName: HUAWEI EVA-L09, appium:uiautomator2ServerLaunchTimeout: 20000, platformName: ANDROID}]}]\nCapabilities {appium:app: apps/app-debug.apk, appium:automationName: UIAutomator2, appium:deviceName: HUAWEI EVA-L09, appium:uiautomator2ServerLaunchTimeout: 20000, platformName: ANDROID}"
+  },
+  {
+    "testName": "testDeleteItem",
+    "className": "org.tests.android.ListTests",
+    "platform": "Android",
+    "status": "SKIPPED",
+    "timestamp": "2025-04-07 10:53:51",
+    "duration": "0ms",
+    "reportFileName": "ExtentReport_20250407_105254.html",
+    "error": "org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: An unknown server-side error occurred while processing the command. Original error: Could not find a connected Android device in 20000ms \nHost info: host: \u0027udizavs-MacBook-Pro.local\u0027, ip: \u0027fe80:0:0:0:10cd:4369:8cf4:5cfe%en0\u0027\nBuild info: version: \u00274.31.0\u0027, revision: \u00271ef9f18787*\u0027\nSystem info: os.name: \u0027Mac OS X\u0027, os.arch: \u0027x86_64\u0027, os.version: \u002715.3.2\u0027, java.version: \u002711.0.26\u0027\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities\u003d[Capabilities {appium:app: apps/app-debug.apk, appium:automationName: UIAutomator2, appium:deviceName: HUAWEI EVA-L09, appium:uiautomator2ServerLaunchTimeout: 20000, platformName: ANDROID}]}]\nCapabilities {appium:app: apps/app-debug.apk, appium:automationName: UIAutomator2, appium:deviceName: HUAWEI EVA-L09, appium:uiautomator2ServerLaunchTimeout: 20000, platformName: ANDROID}"
+  },
+  {
+    "testName": "testSwipeToDeleteItem",
+    "className": "org.tests.android.ListTests",
+    "platform": "Android",
+    "status": "SKIPPED",
+    "timestamp": "2025-04-07 10:53:51",
+    "duration": "0ms",
+    "reportFileName": "ExtentReport_20250407_105254.html",
+    "error": "org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: An unknown server-side error occurred while processing the command. Original error: Could not find a connected Android device in 20000ms \nHost info: host: \u0027udizavs-MacBook-Pro.local\u0027, ip: \u0027fe80:0:0:0:10cd:4369:8cf4:5cfe%en0\u0027\nBuild info: version: \u00274.31.0\u0027, revision: \u00271ef9f18787*\u0027\nSystem info: os.name: \u0027Mac OS X\u0027, os.arch: \u0027x86_64\u0027, os.version: \u002715.3.2\u0027, java.version: \u002711.0.26\u0027\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities\u003d[Capabilities {appium:app: apps/app-debug.apk, appium:automationName: UIAutomator2, appium:deviceName: HUAWEI EVA-L09, appium:uiautomator2ServerLaunchTimeout: 20000, platformName: ANDROID}]}]\nCapabilities {appium:app: apps/app-debug.apk, appium:automationName: UIAutomator2, appium:deviceName: HUAWEI EVA-L09, appium:uiautomator2ServerLaunchTimeout: 20000, platformName: ANDROID}"
+  },
+  {
+    "testName": "testProgressBarWithInvalidValue",
+    "className": "org.tests.android.SliderTests",
+    "platform": "Android",
+    "status": "SKIPPED",
+    "timestamp": "2025-04-07 10:54:11",
+    "duration": "0ms",
+    "reportFileName": "ExtentReport_20250407_105254.html",
+    "error": "org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: An unknown server-side error occurred while processing the command. Original error: Could not find a connected Android device in 20000ms \nHost info: host: \u0027udizavs-MacBook-Pro.local\u0027, ip: \u0027fe80:0:0:0:10cd:4369:8cf4:5cfe%en0\u0027\nBuild info: version: \u00274.31.0\u0027, revision: \u00271ef9f18787*\u0027\nSystem info: os.name: \u0027Mac OS X\u0027, os.arch: \u0027x86_64\u0027, os.version: \u002715.3.2\u0027, java.version: \u002711.0.26\u0027\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities\u003d[Capabilities {appium:app: apps/app-debug.apk, appium:automationName: UIAutomator2, appium:deviceName: HUAWEI EVA-L09, appium:uiautomator2ServerLaunchTimeout: 20000, platformName: ANDROID}]}]\nCapabilities {appium:app: apps/app-debug.apk, appium:automationName: UIAutomator2, appium:deviceName: HUAWEI EVA-L09, appium:uiautomator2ServerLaunchTimeout: 20000, platformName: ANDROID}"
+  },
+  {
+    "testName": "testProgressBarWithNegativeValue",
+    "className": "org.tests.android.SliderTests",
+    "platform": "Android",
+    "status": "SKIPPED",
+    "timestamp": "2025-04-07 10:54:11",
+    "duration": "0ms",
+    "reportFileName": "ExtentReport_20250407_105254.html",
+    "error": "org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: An unknown server-side error occurred while processing the command. Original error: Could not find a connected Android device in 20000ms \nHost info: host: \u0027udizavs-MacBook-Pro.local\u0027, ip: \u0027fe80:0:0:0:10cd:4369:8cf4:5cfe%en0\u0027\nBuild info: version: \u00274.31.0\u0027, revision: \u00271ef9f18787*\u0027\nSystem info: os.name: \u0027Mac OS X\u0027, os.arch: \u0027x86_64\u0027, os.version: \u002715.3.2\u0027, java.version: \u002711.0.26\u0027\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities\u003d[Capabilities {appium:app: apps/app-debug.apk, appium:automationName: UIAutomator2, appium:deviceName: HUAWEI EVA-L09, appium:uiautomator2ServerLaunchTimeout: 20000, platformName: ANDROID}]}]\nCapabilities {appium:app: apps/app-debug.apk, appium:automationName: UIAutomator2, appium:deviceName: HUAWEI EVA-L09, appium:uiautomator2ServerLaunchTimeout: 20000, platformName: ANDROID}"
+  },
+  {
+    "testName": "testProgressBarWithValidValue",
+    "className": "org.tests.android.SliderTests",
+    "platform": "Android",
+    "status": "SKIPPED",
+    "timestamp": "2025-04-07 10:54:11",
+    "duration": "1ms",
+    "reportFileName": "ExtentReport_20250407_105254.html",
+    "error": "org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: An unknown server-side error occurred while processing the command. Original error: Could not find a connected Android device in 20000ms \nHost info: host: \u0027udizavs-MacBook-Pro.local\u0027, ip: \u0027fe80:0:0:0:10cd:4369:8cf4:5cfe%en0\u0027\nBuild info: version: \u00274.31.0\u0027, revision: \u00271ef9f18787*\u0027\nSystem info: os.name: \u0027Mac OS X\u0027, os.arch: \u0027x86_64\u0027, os.version: \u002715.3.2\u0027, java.version: \u002711.0.26\u0027\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities\u003d[Capabilities {appium:app: apps/app-debug.apk, appium:automationName: UIAutomator2, appium:deviceName: HUAWEI EVA-L09, appium:uiautomator2ServerLaunchTimeout: 20000, platformName: ANDROID}]}]\nCapabilities {appium:app: apps/app-debug.apk, appium:automationName: UIAutomator2, appium:deviceName: HUAWEI EVA-L09, appium:uiautomator2ServerLaunchTimeout: 20000, platformName: ANDROID}"
+  },
+  {
+    "testName": "testProgressBarWithZeroValue",
+    "className": "org.tests.android.SliderTests",
+    "platform": "Android",
+    "status": "SKIPPED",
+    "timestamp": "2025-04-07 10:54:11",
+    "duration": "0ms",
+    "reportFileName": "ExtentReport_20250407_105254.html",
+    "error": "org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: An unknown server-side error occurred while processing the command. Original error: Could not find a connected Android device in 20000ms \nHost info: host: \u0027udizavs-MacBook-Pro.local\u0027, ip: \u0027fe80:0:0:0:10cd:4369:8cf4:5cfe%en0\u0027\nBuild info: version: \u00274.31.0\u0027, revision: \u00271ef9f18787*\u0027\nSystem info: os.name: \u0027Mac OS X\u0027, os.arch: \u0027x86_64\u0027, os.version: \u002715.3.2\u0027, java.version: \u002711.0.26\u0027\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [null, newSession {capabilities\u003d[Capabilities {appium:app: apps/app-debug.apk, appium:automationName: UIAutomator2, appium:deviceName: HUAWEI EVA-L09, appium:uiautomator2ServerLaunchTimeout: 20000, platformName: ANDROID}]}]\nCapabilities {appium:app: apps/app-debug.apk, appium:automationName: UIAutomator2, appium:deviceName: HUAWEI EVA-L09, appium:uiautomator2ServerLaunchTimeout: 20000, platformName: ANDROID}"
+  },
+  {
+    "testName": "testHomePopupCancel",
+    "className": "org.tests.ios.POPUPTests",
+    "platform": "iOS",
+    "status": "PASS",
+    "timestamp": "2025-04-07 10:55:40",
+    "duration": "5311ms",
+    "reportFileName": "ExtentReport_20250407_105254.html"
+  },
+  {
+    "testName": "testHomePopupInteraction",
+    "className": "org.tests.ios.POPUPTests",
+    "platform": "iOS",
+    "status": "PASS",
+    "timestamp": "2025-04-07 10:55:50",
+    "duration": "4062ms",
+    "reportFileName": "ExtentReport_20250407_105254.html"
+  },
+  {
+    "testName": "testAddItem",
+    "className": "org.tests.ios.ListTests",
+    "platform": "iOS",
+    "status": "PASS",
+    "timestamp": "2025-04-07 10:56:15",
+    "duration": "4360ms",
+    "reportFileName": "ExtentReport_20250407_105254.html"
+  },
+  {
+    "testName": "testDeleteItem",
+    "className": "org.tests.ios.ListTests",
+    "platform": "iOS",
+    "status": "PASS",
+    "timestamp": "2025-04-07 10:56:38",
+    "duration": "15326ms",
+    "reportFileName": "ExtentReport_20250407_105254.html"
+  },
+  {
+    "testName": "testDeleteItemByOnItemDeleteButton",
+    "className": "org.tests.ios.ListTests",
+    "platform": "iOS",
+    "status": "PASS",
+    "timestamp": "2025-04-07 10:57:02",
+    "duration": "17182ms",
+    "reportFileName": "ExtentReport_20250407_105254.html"
+  },
+  {
+    "testName": "testSwipeToDeleteItem",
+    "className": "org.tests.ios.ListTests",
+    "platform": "iOS",
+    "status": "PASS",
+    "timestamp": "2025-04-07 10:57:28",
+    "duration": "18599ms",
+    "reportFileName": "ExtentReport_20250407_105254.html"
+  },
+  {
+    "testName": "testProgressBarWithInvalidValue",
+    "className": "org.tests.ios.SliderTests",
+    "platform": "iOS",
+    "status": "PASS",
+    "timestamp": "2025-04-07 10:57:46",
+    "duration": "1463ms",
+    "reportFileName": "ExtentReport_20250407_105254.html"
+  },
+  {
+    "testName": "testProgressBarWithNegativeValue",
+    "className": "org.tests.ios.SliderTests",
+    "platform": "iOS",
+    "status": "PASS",
+    "timestamp": "2025-04-07 10:57:53",
+    "duration": "1391ms",
+    "reportFileName": "ExtentReport_20250407_105254.html"
+  },
+  {
+    "testName": "testProgressBarWithValidValue",
+    "className": "org.tests.ios.SliderTests",
+    "platform": "iOS",
+    "status": "PASS",
+    "timestamp": "2025-04-07 10:58:01",
+    "duration": "1353ms",
+    "reportFileName": "ExtentReport_20250407_105254.html"
+  },
+  {
+    "testName": "testProgressBarWithZeroValue",
+    "className": "org.tests.ios.SliderTests",
+    "platform": "iOS",
+    "status": "PASS",
+    "timestamp": "2025-04-07 10:58:08",
+    "duration": "1523ms",
+    "reportFileName": "ExtentReport_20250407_105254.html"
+  }
+]

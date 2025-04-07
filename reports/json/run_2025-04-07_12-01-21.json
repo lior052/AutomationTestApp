@@ -1,0 +1,173 @@
+[
+  {
+    "testName": "testHomePopupCancel",
+    "className": "org.tests.android.POPUPTests",
+    "platform": "Android",
+    "status": "PASS",
+    "timestamp": "2025-04-07 11:58:43",
+    "duration": "2482ms",
+    "reportFileName": "ExtentReport_20250407_115827.html"
+  },
+  {
+    "testName": "testHomePopupCancel",
+    "className": "org.tests.ios.POPUPTests",
+    "platform": "iOS",
+    "status": "PASS",
+    "timestamp": "2025-04-07 11:58:48",
+    "duration": "4158ms",
+    "reportFileName": "ExtentReport_20250407_115827.html"
+  },
+  {
+    "testName": "testHomePopupInteraction",
+    "className": "org.tests.android.POPUPTests",
+    "platform": "Android",
+    "status": "PASS",
+    "timestamp": "2025-04-07 11:58:51",
+    "duration": "3255ms",
+    "reportFileName": "ExtentReport_20250407_115827.html"
+  },
+  {
+    "testName": "testHomePopupInteraction",
+    "className": "org.tests.ios.POPUPTests",
+    "platform": "iOS",
+    "status": "PASS",
+    "timestamp": "2025-04-07 11:58:59",
+    "duration": "4975ms",
+    "reportFileName": "ExtentReport_20250407_115827.html"
+  },
+  {
+    "testName": "testAddItem",
+    "className": "org.tests.android.ListTests",
+    "platform": "Android",
+    "status": "PASS",
+    "timestamp": "2025-04-07 11:59:07",
+    "duration": "2275ms",
+    "reportFileName": "ExtentReport_20250407_115827.html"
+  },
+  {
+    "testName": "testAddItem",
+    "className": "org.tests.ios.ListTests",
+    "platform": "iOS",
+    "status": "PASS",
+    "timestamp": "2025-04-07 11:59:22",
+    "duration": "4050ms",
+    "reportFileName": "ExtentReport_20250407_115827.html"
+  },
+  {
+    "testName": "testDeleteItem",
+    "className": "org.tests.android.ListTests",
+    "platform": "Android",
+    "status": "PASS",
+    "timestamp": "2025-04-07 11:59:29",
+    "duration": "16082ms",
+    "reportFileName": "ExtentReport_20250407_115827.html"
+  },
+  {
+    "testName": "testDeleteItem",
+    "className": "org.tests.ios.ListTests",
+    "platform": "iOS",
+    "status": "PASS",
+    "timestamp": "2025-04-07 11:59:44",
+    "duration": "15220ms",
+    "reportFileName": "ExtentReport_20250407_115827.html"
+  },
+  {
+    "testName": "testSwipeToDeleteItem",
+    "className": "org.tests.android.ListTests",
+    "platform": "Android",
+    "status": "PASS",
+    "timestamp": "2025-04-07 11:59:51",
+    "duration": "15762ms",
+    "reportFileName": "ExtentReport_20250407_115827.html"
+  },
+  {
+    "testName": "testProgressBarWithInvalidValue",
+    "className": "org.tests.android.SliderTests",
+    "platform": "Android",
+    "status": "PASS",
+    "timestamp": "2025-04-07 12:00:03",
+    "duration": "212ms",
+    "reportFileName": "ExtentReport_20250407_115827.html"
+  },
+  {
+    "testName": "testDeleteItemByOnItemDeleteButton",
+    "className": "org.tests.ios.ListTests",
+    "platform": "iOS",
+    "status": "PASS",
+    "timestamp": "2025-04-07 12:00:08",
+    "duration": "17111ms",
+    "reportFileName": "ExtentReport_20250407_115827.html"
+  },
+  {
+    "testName": "testProgressBarWithNegativeValue",
+    "className": "org.tests.android.SliderTests",
+    "platform": "Android",
+    "status": "PASS",
+    "timestamp": "2025-04-07 12:00:09",
+    "duration": "167ms",
+    "reportFileName": "ExtentReport_20250407_115827.html"
+  },
+  {
+    "testName": "testProgressBarWithValidValue",
+    "className": "org.tests.android.SliderTests",
+    "platform": "Android",
+    "status": "PASS",
+    "timestamp": "2025-04-07 12:00:15",
+    "duration": "241ms",
+    "reportFileName": "ExtentReport_20250407_115827.html"
+  },
+  {
+    "testName": "testProgressBarWithZeroValue",
+    "className": "org.tests.android.SliderTests",
+    "platform": "Android",
+    "status": "PASS",
+    "timestamp": "2025-04-07 12:00:21",
+    "duration": "135ms",
+    "reportFileName": "ExtentReport_20250407_115827.html"
+  },
+  {
+    "testName": "testSwipeToDeleteItem",
+    "className": "org.tests.ios.ListTests",
+    "platform": "iOS",
+    "status": "PASS",
+    "timestamp": "2025-04-07 12:00:34",
+    "duration": "18465ms",
+    "reportFileName": "ExtentReport_20250407_115827.html"
+  },
+  {
+    "testName": "testProgressBarWithInvalidValue",
+    "className": "org.tests.ios.SliderTests",
+    "platform": "iOS",
+    "status": "PASS",
+    "timestamp": "2025-04-07 12:00:52",
+    "duration": "1533ms",
+    "reportFileName": "ExtentReport_20250407_115827.html"
+  },
+  {
+    "testName": "testProgressBarWithNegativeValue",
+    "className": "org.tests.ios.SliderTests",
+    "platform": "iOS",
+    "status": "PASS",
+    "timestamp": "2025-04-07 12:00:59",
+    "duration": "1378ms",
+    "reportFileName": "ExtentReport_20250407_115827.html"
+  },
+  {
+    "testName": "testProgressBarWithValidValue",
+    "className": "org.tests.ios.SliderTests",
+    "platform": "iOS",
+    "status": "PASS",
+    "timestamp": "2025-04-07 12:01:07",
+    "duration": "1211ms",
+    "reportFileName": "ExtentReport_20250407_115827.html"
+  },
+  {
+    "testName": "testProgressBarWithZeroValue",
+    "className": "org.tests.ios.SliderTests",
+    "platform": "iOS",
+    "status": "PASS",
+    "timestamp": "2025-04-07 12:01:14",
+    "duration": "1368ms",
+    "reportFileName": "ExtentReport_20250407_115827.html"
+  }
+]

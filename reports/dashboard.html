@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Automation Test Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          padding: 20px;
+          background: var(--bg);
+          color: var(--text);
+          transition: background 0.3s, color 0.3s;
+        }
+
+        :root {
+          --bg: #f4f4f4;
+          --text: #000;
+          --table-bg: #fff;
+          --hover-bg: #eee;
+          --btn-bg: #2196F3;
+        }
+
+        body.dark {
+          --bg: #121212;
+          --text: #eee;
+          --table-bg: #1e1e1e;
+          --hover-bg: #333;
+          --btn-bg: #1976D2;
+        }
+
+        h1, h2 {
+          border-bottom: 1px solid #ccc;
+        }
+
+        .chart-row {
+          display: flex;
+          justify-content: center;
+          gap: 30px;
+          margin: 20px 0;
+          flex-wrap: wrap;
+        }
+
+        .chart-container {
+          flex: 1 1 400px;
+          max-width: 500px;
+        }
+
+        .summary-cards {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-around;
+          margin-bottom: 20px;
+        }
+
+        .card {
+          background: var(--table-bg);
+          color: var(--text);
+          padding: 15px;
+          margin: 10px;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          min-width: 120px;
+          text-align: center;
+        }
+
+        table {
+          width: 100%;
+          background: var(--table-bg);
+          color: var(--text);
+        }
+
+        th, td {
+          padding: 8px;
+          text-align: left;
+        }
+
+        th.sortable:hover {
+          cursor: pointer;
+          color: #2196F3;
+        }
+
+        tr:hover {
+          background: var(--hover-bg);
+        }
+
+        input, select {
+          padding: 5px;
+          margin-right: 10px;
+          background: var(--table-bg);
+          color: var(--text);
+          border: 1px solid #ccc;
+        }
+
+        .filters {
+          margin: 15px 0;
+          flex-wrap: wrap;
+        }
+
+        .report-btn {
+          background-color: var(--btn-bg);
+          color: white;
+          padding: 5px 10px;
+          text-decoration: none;
+          border-radius: 5px;
+          display: inline-block;
+        }
+
+        .toggle-mode {
+          float: right;
+          margin-top: -40px;
+          cursor: pointer;
+          font-size: 18px;
+        }
+
+        .toggle-mode i {
+          color: #999;
+        }
+
+        .toggle-mode:hover i {
+          color: #2196F3;
+        }
+
+        .status-fail {
+          background-color: #ffdddd !important;
+          color: #b00020 !important;
+        }
+
+        .status-skipped {
+          background-color: #fff8dc !important;
+          color: #b8860b !important;
+        }
+
+        .pagination {
+          margin: 20px 0;
+          text-align: center;
+        }
+
+        .pagination button {
+          margin: 0 5px;
+          padding: 5px 10px;
+          background: var(--btn-bg);
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+
+        .pagination button.disabled {
+          background: #aaa;
+          cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+          .filters {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .chart-row {
+            flex-direction: column;
+            align-items: center;
+          }
+        }
+    </style>
+</head>
+<body>
+<h1>Automation Test Dashboard
+    <span class="toggle-mode" onclick="toggleDarkMode()" title="Toggle Dark Mode">
+    <i class="fa-solid fa-circle-half-stroke"></i>
+  </span>
+</h1>
+
+<div class="summary-cards" id="summaryCards"></div>
+
+<div class="chart-row">
+    <div class="chart-container">
+        <canvas id="statusChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="platformChart"></canvas>
+    </div>
+</div>
+
+<div>
+    <h2>Test Runs</h2>
+    <div class="filters">
+        From: <input type="date" id="startDate">
+        To: <input type="date" id="endDate">
+        <input type="text" id="tableFilter" placeholder="Search test name...">
+        <select id="statusFilter">
+            <option value="">All Status</option>
+            <option value="PASS">PASS</option>
+            <option value="FAIL">FAIL</option>
+            <option value="SKIPPED">SKIPPED</option>
+        </select>
+        <select id="platformFilter">
+            <option value="">All Platforms</option>
+            <option value="Android">Android</option>
+            <option value="iOS">iOS</option>
+        </select>
+    </div>
+
+    <table border="1" id="runTable">
+        <thead>
+        <tr>
+            <th class="sortable" data-sort="index">#</th>
+            <th class="sortable" data-sort="timestamp">Date <i class="fa fa-sort"></i></th>
+            <th class="sortable" data-sort="testName">Test Name <i class="fa fa-sort"></i></th>
+            <th class="sortable" data-sort="status">Status <i class="fa fa-sort"></i></th>
+            <th class="sortable" data-sort="platform">Platform <i class="fa fa-sort"></i></th>
+            <th class="sortable" data-sort="duration">Duration <i class="fa fa-sort"></i></th>
+            <th>Report</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <div class="pagination" id="pagination"></div>
+</div>
+
+<script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+    }
+
+    let resultsData = [];
+    let currentSort = { key: 'index', asc: true };
+    let currentPage = 1;
+    const rowsPerPage = 25;
+    const tableBody = document.querySelector('#runTable tbody');
+
+    document.getElementById('tableFilter').addEventListener('input', renderFilteredRows);
+    document.getElementById('statusFilter').addEventListener('input', renderFilteredRows);
+    document.getElementById('platformFilter').addEventListener('input', renderFilteredRows);
+    document.getElementById('startDate').addEventListener('change', renderFilteredRows);
+    document.getElementById('endDate').addEventListener('change', renderFilteredRows);
+
+    document.querySelectorAll('.sortable').forEach(th => {
+      th.addEventListener('click', () => {
+        const key = th.dataset.sort;
+        if (currentSort.key === key) {
+          currentSort.asc = !currentSort.asc;
+        } else {
+          currentSort.key = key;
+          currentSort.asc = true;
+        }
+        renderFilteredRows();
+      });
+    });
+
+    async function loadData() {
+      const response = await fetch('./json/index.json');
+      const files = await response.json();
+      for (const fileName of files) {
+        if (fileName.endsWith('.json') && fileName !== 'index.json') {
+          const res = await fetch(`./json/${fileName}`);
+          const json = await res.json();
+          json.forEach(test => {
+          resultsData.push(test);
+          });
+        }
+      }
+      renderDashboard();
+      renderFilteredRows();
+    }
+
+    function renderDashboard() {
+      const summary = document.getElementById('summaryCards');
+      const statusCounts = {};
+      const platformCounts = {};
+
+      resultsData.forEach(item => {
+        statusCounts[item.status] = (statusCounts[item.status] || 0) + 1;
+        platformCounts[item.platform] = (platformCounts[item.platform] || 0) + 1;
+      });
+
+      summary.innerHTML = `
+        <div class="card"><strong>Total</strong><br>${resultsData.length}</div>
+        <div class="card"><strong>Passed</strong><br>${statusCounts.PASS || 0}</div>
+        <div class="card"><strong>Failed</strong><br>${statusCounts.FAIL || 0}</div>
+        <div class="card"><strong>Skipped</strong><br>${statusCounts.SKIPPED || 0}</div>
+      `;
+
+      const orderedStatuses = ['PASS', 'FAIL', 'SKIPPED'];
+const statusColors = {
+  PASS: '#4CAF50',    // green
+  FAIL: '#F44336',    // red
+  SKIPPED: '#FFC107'  // amber
+};
+
+new Chart(document.getElementById('statusChart'), {
+  type: 'pie',
+  data: {
+    labels: orderedStatuses,
+    datasets: [{
+      data: orderedStatuses.map(s => statusCounts[s] || 0),
+      backgroundColor: orderedStatuses.map(s => statusColors[s])
+    }]
+  },
+  options: {
+    plugins: {
+      title: {
+        display: true,
+        text: 'Status Distribution'
+      }
+    }
+  }
+});
+
+
+      new Chart(document.getElementById('platformChart'), {
+        type: 'bar',
+        data: {
+          labels: Object.keys(platformCounts),
+          datasets: [{
+            label: 'Tests',
+            data: Object.values(platformCounts),
+            backgroundColor: '#2196F3'
+          }]
+        },
+        options: { plugins: { title: { display: true, text: 'Platform Breakdown' } } }
+      });
+    }
+
+    function renderFilteredRows() {
+      const search = document.getElementById('tableFilter').value.toLowerCase();
+      const status = document.getElementById('statusFilter').value;
+      const platform = document.getElementById('platformFilter').value;
+      const startDate = document.getElementById('startDate').value;
+      const endDate = document.getElementById('endDate').value;
+
+      let filtered = resultsData.filter(item => {
+        const dateValid = (!startDate || new Date(item.timestamp) >= new Date(startDate)) &&
+                          (!endDate || new Date(item.timestamp) <= new Date(endDate));
+        return (
+          (!status || item.status === status) &&
+          (!platform || item.platform === platform) &&
+          item.testName.toLowerCase().includes(search) &&
+          dateValid
+        );
+      });
+
+      const key = currentSort.key;
+      filtered.sort((a, b) => {
+        const A = a[key]?.toString().toLowerCase() || '';
+        const B = b[key]?.toString().toLowerCase() || '';
+        return currentSort.asc ? A.localeCompare(B, undefined, { numeric: true }) : B.localeCompare(A, undefined, { numeric: true });
+      });
+
+      const start = (currentPage - 1) * rowsPerPage;
+      const paginated = filtered.slice(start, start + rowsPerPage);
+
+      tableBody.innerHTML = '';
+      paginated.forEach((item, index) => {
+        const tr = document.createElement('tr');
+        if (item.status === "FAIL") tr.classList.add("status-fail");
+        if (item.status === "SKIPPED") tr.classList.add("status-skipped");
+
+        const durationInSeconds = item.duration ? `${(parseFloat(item.duration) / 1000).toFixed(1)}s` : '-';
+
+        tr.innerHTML = `
+          <td>${start + index + 1}</td>
+          <td>${item.timestamp}</td>
+          <td>${item.testName}</td>
+          <td>${item.status}</td>
+          <td>${item.platform}</td>
+          <td>${durationInSeconds}</td>
+          <td><a href="./${item.reportFileName}" target="_blank" class="report-btn">View</a></td>
+        `;
+        tableBody.appendChild(tr);
+      });
+
+      renderPagination(filtered.length);
+    }
+
+    function renderPagination(totalRows) {
+      const totalPages = Math.ceil(totalRows / rowsPerPage);
+      const pagination = document.getElementById('pagination');
+      pagination.innerHTML = '';
+
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        if (i === currentPage) {
+          btn.disabled = true;
+          btn.classList.add("disabled");
+        }
+        btn.addEventListener('click', () => {
+          currentPage = i;
+          renderFilteredRows();
+        });
+        pagination.appendChild(btn);
+      }
+    }
+
+    loadData();
+</script>
+</body>
+</html>

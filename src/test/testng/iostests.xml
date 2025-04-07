@@ -1,0 +1,19 @@
+<suite name="Mobile Automation iOS Suite">
+    <listeners>
+        <listener class-name="org.appium.framework.reports.ReportListeners"/>
+    </listeners>
+
+    <test name="iOS Tests">
+        <groups>
+            <run>
+                <include name="iOS"/>
+            </run>
+        </groups>
+        <parameter name="platformName" value="iOS"/>
+        <classes>
+            <class name="org.tests.ios.POPUPTests"/>
+            <class name="org.tests.ios.ListTests"/>
+            <class name="org.tests.ios.SliderTests"/>
+        </classes>
+    </test>
+</suite>

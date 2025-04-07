@@ -1,0 +1,34 @@
+<suite name="Mobile Automation Suite" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="org.appium.framework.reports.ReportListeners"/>
+        <listener class-name="org.appium.framework.RetryListener"/>
+    </listeners>
+
+    <test name="iOS Tests">
+        <groups>
+            <run>
+                <include name="iOS"/>
+            </run>
+        </groups>
+        <parameter name="platformName" value="iOS"/>
+        <classes>
+            <class name="org.tests.ios.POPUPTests"/>
+            <class name="org.tests.ios.ListTests"/>
+            <class name="org.tests.ios.SliderTests"/>
+        </classes>
+    </test>
+
+    <test name="Android Tests">
+        <groups>
+            <run>
+                <include name="Android"/>
+            </run>
+        </groups>
+        <parameter name="platformName" value="Android"/>
+        <classes>
+            <class name="org.tests.android.POPUPTests"/>
+            <class name="org.tests.android.ListTests"/>
+            <class name="org.tests.android.SliderTests"/>
+        </classes>
+    </test>
+</suite>
