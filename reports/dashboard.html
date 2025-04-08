@@ -163,6 +163,7 @@
             align-items: center;
           }
         }
+
     </style>
 </head>
 <body>
@@ -219,6 +220,9 @@
     <div class="pagination" id="pagination"></div>
 </div>
 
+<!-- Load index.js first -->
+<script src="json/index.js"></script>
+
 <script>
     function toggleDarkMode() {
       document.body.classList.toggle("dark");
@@ -249,20 +253,40 @@
       });
     });
 
-    async function loadData() {
-      const response = await fetch('json/index.json');
-      const files = await response.json();
-      for (const fileName of files) {
-        if (fileName.endsWith('.json') && fileName !== 'index.json') {
-          const res = await fetch(`json/${fileName}`);
-          const json = await res.json();
-          json.forEach(test => {
-          resultsData.push(test);
-          });
-        }
+    function loadData() {
+      if (!window.availableRuns || !Array.isArray(window.availableRuns)) {
+        console.error("No availableRuns found.");
+        return;
       }
-      renderDashboard();
-      renderFilteredRows();
+
+      let loaded = 0;
+      window.allTestResults = [];
+
+      availableRuns.forEach((file) => {
+        const script = document.createElement("script");
+        script.src = `json/${file}`;
+        script.onload = () => {
+          if (typeof testResults !== "undefined" && Array.isArray(testResults)) {
+            window.allTestResults.push(...testResults);
+          }
+          loaded++;
+          if (loaded === availableRuns.length) {
+            resultsData = window.allTestResults;
+            renderDashboard();
+            renderFilteredRows();
+          }
+        };
+        script.onerror = () => {
+          console.error(`Failed to load ${file}`);
+          loaded++;
+          if (loaded === availableRuns.length) {
+            resultsData = window.allTestResults;
+            renderDashboard();
+            renderFilteredRows();
+          }
+        };
+        document.body.appendChild(script);
+      });
     }
 
     function renderDashboard() {
@@ -283,31 +307,30 @@
       `;
 
       const orderedStatuses = ['PASS', 'FAIL', 'SKIPPED'];
-const statusColors = {
-  PASS: '#4CAF50',    // green
-  FAIL: '#F44336',    // red
-  SKIPPED: '#FFC107'  // amber
-};
+      const statusColors = {
+        PASS: '#4CAF50',
+        FAIL: '#F44336',
+        SKIPPED: '#FFC107'
+      };
 
-new Chart(document.getElementById('statusChart'), {
-  type: 'pie',
-  data: {
-    labels: orderedStatuses,
-    datasets: [{
-      data: orderedStatuses.map(s => statusCounts[s] || 0),
-      backgroundColor: orderedStatuses.map(s => statusColors[s])
-    }]
-  },
-  options: {
-    plugins: {
-      title: {
-        display: true,
-        text: 'Status Distribution'
-      }
-    }
-  }
-});
-
+      new Chart(document.getElementById('statusChart'), {
+        type: 'pie',
+        data: {
+          labels: orderedStatuses,
+          datasets: [{
+            data: orderedStatuses.map(s => statusCounts[s] || 0),
+            backgroundColor: orderedStatuses.map(s => statusColors[s])
+          }]
+        },
+        options: {
+          plugins: {
+            title: {
+              display: true,
+              text: 'Status Distribution'
+            }
+          }
+        }
+      });
 
       new Chart(document.getElementById('platformChart'), {
         type: 'bar',
@@ -319,7 +342,14 @@ new Chart(document.getElementById('statusChart'), {
             backgroundColor: '#2196F3'
           }]
         },
-        options: { plugins: { title: { display: true, text: 'Platform Breakdown' } } }
+        options: {
+          plugins: {
+            title: {
+              display: true,
+              text: 'Platform Breakdown'
+            }
+          }
+        }
       });
     }
 
@@ -394,7 +424,9 @@ new Chart(document.getElementById('statusChart'), {
       }
     }
 
+    // Start the dashboard
     loadData();
 </script>
 </body>
 </html>
+
