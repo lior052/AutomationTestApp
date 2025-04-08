@@ -49,9 +49,17 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                sh 'mvn clean test -DsuiteXmlFile=src/test/testng/testng.xml'
+                script {
+                    def result = sh(script: 'mvn clean test -DsuiteXmlFile=src/test/testng/testng.xml', returnStatus: true)
+                    if (result != 0) {
+                        echo 'Tests failed. Marking build as UNSTABLE.'
+                        currentBuild.result = 'UNSTABLE'
+                    }
+                }
             }
         }
+
+
 
         stage('Archive Results') {
             steps {
@@ -76,16 +84,21 @@ pipeline {
                 ])
             }
         }
-
-
     }
 
-    post {
-        always {
-            echo 'Pipeline completed.'
-        }
-        failure {
-            echo 'Pipeline failed.'
-        }
-    }
+   post {
+       always {
+           echo 'Pipeline completed.'
+       }
+       failure {
+           echo 'Pipeline failed.'
+       }
+       success {
+           echo 'Pipeline succeeded.'
+       }
+       unstable {
+           echo 'Some tests failed, marking build as UNSTABLE.'
+       }
+   }
+
 }
