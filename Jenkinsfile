@@ -12,7 +12,16 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/lior052/AutomationTestApp.git'
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    doGenerateSubmoduleConfigurations: false,
+                    extensions: [[$class: 'SubmoduleOption', recursiveSubmodules: true]],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/lior052/AutomationTestApp.git'
+                    ]]
+                ])
+//                 git branch: 'main', url: 'https://github.com/lior052/AutomationTestApp.git'
             }
         }
 
