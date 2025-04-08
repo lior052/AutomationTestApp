@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    environment {
-        MAVEN_OPTS = "-Dmaven.repo.local=.m2/repository"
-    }
+//     environment {
+//         MAVEN_OPTS = "-Dmaven.repo.local=.m2/repository"
+//     }
 
     options {
         timestamps()
