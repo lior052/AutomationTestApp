@@ -10,6 +10,7 @@ pipeline {
     }
 
     stages {
+
         stage('Checkout') {
             steps {
                 checkout([
@@ -19,17 +20,29 @@ pipeline {
                     extensions: [[$class: 'SubmoduleOption', recursiveSubmodules: true]],
                     userRemoteConfigs: [[
                         url: 'https://github.com/lior052/AutomationTestApp.git'
-                    ]]
+                    ]],
+                    submoduleCfg: []
                 ])
-//                 git branch: 'main', url: 'https://github.com/lior052/AutomationTestApp.git'
             }
         }
 
         stage('Install SDK') {
             steps {
                 dir('AppiumSDK') {
-                    sh 'mvn clean install'
+                    script {
+                        if (fileExists('pom.xml')) {
+                            sh 'mvn clean install'
+                        } else {
+                            error "pom.xml not found in AppiumSDK!"
+                        }
+                    }
                 }
+            }
+        }
+
+        stage('Clean Maven Repo') {
+            steps {
+                sh 'rm -rf .m2/repository'
             }
         }
 
