@@ -78,7 +78,8 @@ pipeline {
                     reportName: 'Automation Test Dashboard',
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
-                    allowMissing: false
+                    allowMissing: false,
+                    useWrapper: false
                 ])
             }
         }
