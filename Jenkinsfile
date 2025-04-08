@@ -16,6 +16,14 @@ pipeline {
             }
         }
 
+        stage('Install SDK') {
+            steps {
+                dir('AppiumSDK') {
+                    sh 'mvn clean install'
+                }
+            }
+        }
+
         stage('Build & Test') {
             steps {
                 sh 'mvn clean test -DsuiteXmlFile=src/test/testng/testng.xml'

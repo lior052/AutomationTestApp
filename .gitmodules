@@ -1,0 +1,3 @@
+[submodule "AppiumSDK"]
+	path = AppiumSDK
+	url = https://github.com/lior052/AppiumSDK.git
