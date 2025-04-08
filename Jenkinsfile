@@ -59,8 +59,6 @@ pipeline {
             }
         }
 
-
-
         stage('Archive Results') {
             steps {
                 // Optional: Only include if you actually have XML results in surefire-reports

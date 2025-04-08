@@ -250,11 +250,11 @@
     });
 
     async function loadData() {
-      const response = await fetch('./json/index.json');
+      const response = await fetch('json/index.json');
       const files = await response.json();
       for (const fileName of files) {
         if (fileName.endsWith('.json') && fileName !== 'index.json') {
-          const res = await fetch(`./json/${fileName}`);
+          const res = await fetch(`json/${fileName}`);
           const json = await res.json();
           json.forEach(test => {
           resultsData.push(test);
