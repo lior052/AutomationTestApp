@@ -1,0 +1,157 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
+
+:root {
+  --bg: #f4f4f4;
+  --text: #000;
+  --table-bg: #fff;
+  --hover-bg: #eee;
+  --btn-bg: #2196F3;
+}
+
+body.dark {
+  --bg: #121212;
+  --text: #eee;
+  --table-bg: #1e1e1e;
+  --hover-bg: #333;
+  --btn-bg: #1976D2;
+}
+
+h1, h2 {
+  border-bottom: 1px solid #ccc;
+}
+
+.chart-row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.chart-container {
+  flex: 1 1 400px;
+  max-width: 500px;
+}
+
+.summary-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: var(--table-bg);
+  color: var(--text);
+  padding: 15px;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  min-width: 120px;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  background: var(--table-bg);
+  color: var(--text);
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+th.sortable:hover {
+  cursor: pointer;
+  color: #2196F3;
+}
+
+tr:hover {
+  background: var(--hover-bg);
+}
+
+input, select {
+  padding: 5px;
+  margin-right: 10px;
+  background: var(--table-bg);
+  color: var(--text);
+  border: 1px solid #ccc;
+}
+
+.filters {
+  margin: 15px 0;
+  flex-wrap: wrap;
+}
+
+.report-btn {
+  background-color: var(--btn-bg);
+  color: white;
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.toggle-mode {
+  float: right;
+  margin-top: -40px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.toggle-mode i {
+  color: #999;
+}
+
+.toggle-mode:hover i {
+  color: #2196F3;
+}
+
+.status-fail {
+  background-color: #ffdddd !important;
+  color: #b00020 !important;
+}
+
+.status-skipped {
+  background-color: #fff8dc !important;
+  color: #b8860b !important;
+}
+
+.pagination {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  background: var(--btn-bg);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination button.disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .filters {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chart-row {
+    flex-direction: column;
+    align-items: center;
+  }
+}
