@@ -60,8 +60,8 @@ pipeline {
                 // Optional: Only include if you actually have XML results in surefire-reports
                 junit '**/target/surefire-reports/*.xml'
 
-                // Archive HTML and JSON report files
-                archiveArtifacts artifacts: 'reports/**/*.html, reports/**/*.json', allowEmptyArchive: true
+                // Archive report files
+                archiveArtifacts artifacts: 'reports/**/*.*, allowEmptyArchive: true
             }
         }
 
