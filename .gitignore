@@ -5,12 +5,7 @@
 # But NOT this one
 !reports/dashboard.html
 !reports/json/index.json
-
-# Ignore all HTML files
-*.html
-
-# But NOT this one
-!reports/dashboard.html
+!reports/**/*.js
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
