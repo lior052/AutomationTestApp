@@ -65,19 +65,31 @@ pipeline {
             }
         }
 
-        stage('Publish HTML Report') {
+        stage('Package Dashboard Report') {
             steps {
-                // Publish the main dashboard report
-                publishHTML([
-                    reportDir: 'reports',
-                    reportFiles: 'dashboard.html',
-                    reportName: 'Automation Test Dashboard',
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    allowMissing: false
-                ])
+                script {
+                    // Package entire report directory as ZIP
+                    def reportDir = "${env.WORKSPACE}/reports"
+                    def zipFile = "${reportDir}/download-report.zip"
+                    sh "cd ${reportDir} && zip -r download-report.zip . -x '*.zip'" // Exclude existing zips
+                }
             }
         }
+
+        stage('Publish HTML Report') {
+                    steps {
+                        // Publish the main dashboard report
+                        publishHTML([
+                            reportDir: 'reports',
+                            reportFiles: 'dashboard.html',
+                            reportName: 'Automation Test Dashboard',
+                            alwaysLinkToLastBuild: true,
+                            keepAll: true,
+                            allowMissing: false
+                        ])
+                    }
+                }
+
     }
 
    post {
