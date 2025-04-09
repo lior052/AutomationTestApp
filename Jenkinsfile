@@ -61,7 +61,7 @@ pipeline {
                 junit '**/target/surefire-reports/*.xml'
 
                 // Archive report files
-                archiveArtifacts artifacts: 'reports/**/*.*, allowEmptyArchive: true
+                archiveArtifacts artifacts: 'reports/**/*.html, reports/**/*.json, reports/**/*.js', allowEmptyArchive: true
             }
         }
 
