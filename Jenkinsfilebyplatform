@@ -1,0 +1,134 @@
+pipeline {
+    agent any
+
+    options {
+        timestamps()
+    }
+
+    environment {
+        PLATFORM = ''  // Will be set dynamically
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                cleanWs()
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    doGenerateSubmoduleConfigurations: false,
+                    extensions: [[$class: 'SubmoduleOption', recursiveSubmodules: true]],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/lior052/AutomationTestApp.git'
+                    ]],
+                    submoduleCfg: []
+                ])
+                script {
+                    def gitUrl = sh(script: "git config --get remote.origin.url", returnStdout: true).trim()
+                    def repoName = gitUrl.tokenize('/').last().replace('.git', '').toLowerCase()
+
+                    if (repoName.contains("iOS")) {
+                        env.PLATFORM = 'ios'
+                    } else if (repoName.contains("Android")) {
+                        env.PLATFORM = 'android'
+                    } else {
+                        // Default to Android if ambiguous, or handle as needed
+                        echo "Unknown platform in repo name. Defaulting to android."
+                        env.PLATFORM = 'android'
+                    }
+
+                    echo "Detected platform: ${env.PLATFORM}"
+                }
+            }
+        }
+
+        stage('Install SDK') {
+            steps {
+                dir('AppiumSDK') {
+                    script {
+                        if (fileExists('pom.xml')) {
+                            sh 'mvn clean install'
+                        } else {
+                            error "pom.xml not found in AppiumSDK!"
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Clean Maven Repo') {
+            steps {
+                sh 'rm -rf .m2/repository'
+            }
+        }
+
+        stage('Build & Test') {
+            steps {
+                script {
+                    echo "Running tests for platform: ${env.PLATFORM}"
+
+                    def testCommand = ''
+
+                    if (env.PLATFORM == 'android') {
+                        testCommand = 'mvn clean test -DsuiteXmlFile=src/test/testng/androidtests.xml'
+                    } else if (env.PLATFORM == 'ios') {
+                        testCommand = 'mvn clean test -DsuiteXmlFile=src/test/testng/iostests.xml'
+                    }
+
+                    def result = sh(script: testCommand, returnStatus: true)
+
+                    if (result != 0) {
+                        echo 'Tests failed. Marking build as UNSTABLE.'
+                        currentBuild.result = 'UNSTABLE'
+                    }
+                }
+            }
+        }
+
+        stage('Archive Results') {
+            steps {
+                junit '**/target/surefire-reports/*.xml'
+                archiveArtifacts artifacts: 'reports/**/*.html, reports/**/*.json, reports/**/*.js', allowEmptyArchive: true
+            }
+        }
+
+        stage('Package Dashboard Report') {
+            steps {
+                script {
+                    def reportDir = "${env.WORKSPACE}/reports"
+                    def zipFile = "${reportDir}/download-report.zip"
+                    sh "cd ${reportDir} && zip -r download-report.zip . -x '*.zip'"
+                }
+            }
+        }
+
+        stage('Publish HTML Report') {
+            steps {
+                publishHTML([
+                    reportDir: 'reports',
+                    reportFiles: 'dashboard.html',
+                    reportName: 'Automation Test Dashboard',
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    allowMissing: false
+                ])
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline completed.'
+        }
+        failure {
+            echo 'Pipeline failed.'
+        }
+        success {
+            echo 'Pipeline succeeded.'
+        }
+        unstable {
+            echo 'Some tests failed, marking build as UNSTABLE.'
+        }
+    }
+}
