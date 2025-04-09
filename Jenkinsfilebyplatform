@@ -1,16 +1,16 @@
 pipeline {
     agent any
 
-    triggers {
-            githubPush()
-     }
-
     options {
         timestamps()
     }
 
+    parameters {
+        string(name: 'PLATFORM', defaultValue: 'android', description: 'Platform to test: android or ios')
+    }
+
     environment {
-        PLATFORM = ''  // Will be set dynamically
+            PLATFORM = "${params.PLATFORM}"
     }
 
     stages {
@@ -28,22 +28,6 @@ pipeline {
                     ]],
                     submoduleCfg: []
                 ])
-                script {
-                    def gitUrl = sh(script: "git config --get remote.origin.url", returnStdout: true).trim()
-                    def repoName = gitUrl.tokenize('/').last().replace('.git', '').toLowerCase()
-
-                    if (repoName.contains("iOS")) {
-                        env.PLATFORM = 'ios'
-                    } else if (repoName.contains("Android")) {
-                        env.PLATFORM = 'android'
-                    } else {
-                        // Default to Android if ambiguous, or handle as needed
-                        echo "Unknown platform in repo name. Defaulting to android."
-                        env.PLATFORM = 'android'
-                    }
-
-                    echo "Detected platform: ${env.PLATFORM}"
-                }
             }
         }
 
@@ -70,14 +54,16 @@ pipeline {
         stage('Build & Test') {
             steps {
                 script {
-                    echo "Running tests for platform: ${env.PLATFORM}"
+                    echo "Running tests for platform: ${params.PLATFORM}"
 
                     def testCommand = ''
 
-                    if (env.PLATFORM == 'android') {
+                    if (params.PLATFORM == 'android') {
                         testCommand = 'mvn clean test -DsuiteXmlFile=src/test/testng/androidtests.xml'
-                    } else if (env.PLATFORM == 'ios') {
+                    } else if (params.PLATFORM == 'ios') {
                         testCommand = 'mvn clean test -DsuiteXmlFile=src/test/testng/iostests.xml'
+                    } else {
+                        error "Unsupported platform: ${params.PLATFORM}"
                     }
 
                     def result = sh(script: testCommand, returnStatus: true)
